@@ -23,7 +23,7 @@ const QRTypeSelector = ({
             variant="ghost"
             className={cn(
               "flex flex-col items-center justify-center gap-2 h-fit w-22 text-white cursor-pointer ",
-              selectedQRType?.id === type.id && "bg-accent/60 scale-110"
+              selectedQRType?.id === type.id && "bg-accent/80 scale-110"
             )}
             onClick={() => setSelectedQRType(type)}
           >
