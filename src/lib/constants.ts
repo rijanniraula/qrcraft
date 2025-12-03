@@ -6,6 +6,7 @@ import {
   TextIcon,
   MessageCircleIcon,
 } from "lucide-react";
+import TextForm from "@/components/forms/TextForm";
 
 export const QR_TYPES = [
   {
@@ -45,3 +46,7 @@ export const QR_TYPES = [
     icon: MessageCircleIcon,
   },
 ];
+
+export const QR_TYPE_MAP = {
+  text: TextForm,
+};
