@@ -10,8 +10,11 @@ export const HomePage = () => {
     (typeof QR_TYPES)[number]
   >(QR_TYPES[0]);
 
+  const [qrValue, setQrValue] = useState<string>("");
+
   const handleFormSubmit = (data: any) => {
     console.log(data);
+    setQrValue(data[selectedQRType.value]);
   };
 
   return (
@@ -27,7 +30,7 @@ export const HomePage = () => {
               selectedQRType={selectedQRType}
               onSubmit={handleFormSubmit}
             />
-            <MainQRArea />
+            <MainQRArea qrValue={qrValue} />
           </div>
         </div>
       </CardCustom>
