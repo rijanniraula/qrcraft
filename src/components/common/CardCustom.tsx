@@ -5,20 +5,21 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 export const CardCustom = ({
   title,
-  description,
+  description = null,
   className,
   children,
 }: {
-  title?: string;
-  description?: string;
+  title?: React.ReactNode;
+  description?: React.ReactNode | null;
   className?: string;
   children: React.ReactNode;
 }) => {
   return (
-    <Card className={className}>
+    <Card className={cn("shadow-xs border-none p-0 m-0 gap-4", className)}>
       {title ||
         (description && (
           <CardHeader>
@@ -26,7 +27,7 @@ export const CardCustom = ({
             {description && <CardDescription>{description}</CardDescription>}
           </CardHeader>
         ))}
-      <CardContent>{children}</CardContent>
+      <CardContent className="p-0 m-0">{children}</CardContent>
     </Card>
   );
 };

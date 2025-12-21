@@ -18,22 +18,23 @@ export const HomePage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-cyan-700">
-      <QRTypeSelector
-        selectedQRType={selectedQRType}
-        setSelectedQRType={setSelectedQRType}
-      />
-      <CardCustom className="w-full max-w-6xl m-4 rounded-md bg-gray-50">
-        <div className="space-y-4">
-          <div className="flex items-start justify-between gap-4">
-            <QRFormSection
-              selectedQRType={selectedQRType}
-              onSubmit={handleFormSubmit}
-            />
-            <MainQRArea qrValue={qrValue} />
-          </div>
+    <main className="max-w-7xl mx-auto px-4 py-8">
+      <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {" "}
+        <div className="flex flex-col gap-8">
+          <QRTypeSelector
+            selectedQRType={selectedQRType}
+            setSelectedQRType={setSelectedQRType}
+          />
+          <QRFormSection
+            selectedQRType={selectedQRType}
+            onSubmit={handleFormSubmit}
+          />
         </div>
-      </CardCustom>
-    </div>
+        <div className="h-fit">
+          <MainQRArea qrValue={qrValue} />
+        </div>{" "}
+      </div>
+    </main>
   );
 };

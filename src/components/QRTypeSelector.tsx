@@ -12,22 +12,24 @@ const QRTypeSelector = ({
 }) => {
   return (
     <CardCustom
-      title=""
-      description=""
-      className="w-full max-w-6xl p-4 border-accent bg-accent/20"
+      title={
+        <span className="text-sm text-muted-foreground">QR Type Selector</span>
+      }
+      className="w-full shadow-xs border-none p-4"
     >
-      <div className="flex items-center justify-center gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {QR_TYPES.map((type) => (
           <Button
             key={type.id}
-            variant="ghost"
+            variant="outline"
             className={cn(
-              "flex flex-col items-center justify-center gap-2 h-fit w-22 text-white cursor-pointer ",
-              selectedQRType?.id === type.id && "bg-accent/80 scale-110"
+              "m-0 flex flex-col items-center justify-center h-fit gap-1.5 p-3 rounded-xl transition-all duration-200 bg-white hover:bg-primary/5 hover:border-primary text-muted-foreground hover:text-muted-foreground",
+              selectedQRType?.id === type.id &&
+                "bg-primary/10 border border-primary text-primary"
             )}
             onClick={() => setSelectedQRType(type)}
           >
-            <type.icon className="size-6" />
+            <type.icon className="size-5" />
             <h1 className="text-xs font-medium">{type.name}</h1>
           </Button>
         ))}

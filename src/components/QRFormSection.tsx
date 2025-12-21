@@ -1,6 +1,7 @@
 import { QR_TYPES } from "@/lib/constants";
 import { QR_TYPE_MAP } from "@/lib/constants";
 import { useMemo } from "react";
+import { CardCustom } from "./common/CardCustom";
 
 const QRFormSection = ({
   selectedQRType,
@@ -14,17 +15,17 @@ const QRFormSection = ({
   }, [selectedQRType.value]);
 
   return (
-    <div className="space-y-4">
-      <div className="mb-6">
-        <h1 className="text-lg font-bold flex items-center gap-2 bg-card pr-4 shadow-xs ">
-          <div className="bg-accent  p-3">
-            <selectedQRType.icon className="size-5 text-white" />
-          </div>
-          Fill the required fields to generate your QR code
-        </h1>
-      </div>
+    <CardCustom
+      title={
+        <span className="text-sm text-muted-foreground flex items-center gap-1">
+          <selectedQRType.icon className="size-4" />
+          Content
+        </span>
+      }
+      className="shadow-xs border-none p-4"
+    >
       <FormComponent onSubmit={onSubmit} />
-    </div>
+    </CardCustom>
   );
 };
 
