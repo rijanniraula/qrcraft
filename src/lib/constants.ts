@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import TextForm from "@/components/forms/TextForm";
 import URLForm from "@/components/forms/URLForm";
+import EmailForm from "@/components/forms/EmailForm";
 
 export const QR_TYPES = [
   {
@@ -51,4 +52,5 @@ export const QR_TYPES = [
 export const QR_TYPE_MAP = {
   text: TextForm,
   url: URLForm,
+  email: EmailForm,
 };
