@@ -23,9 +23,11 @@ const EmailForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
       body: bodyValue,
     } = formData;
 
-    const emailRedirectUrl = `mailto:${emailValue}?subject=${encodeURIComponent(
-      subjectValue
-    )}&body=${encodeURIComponent(bodyValue)}`;
+    const emailRedirectUrl = `mailto:${encodeURIComponent(
+      emailValue
+    )}?subject=${encodeURIComponent(subjectValue)}&body=${encodeURIComponent(
+      bodyValue
+    )}`;
 
     onSubmit({ email: emailRedirectUrl });
   };

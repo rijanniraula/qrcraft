@@ -8,7 +8,7 @@ const PhoneForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const phoneNumber = phone.replace(/[^0-9]/g, "");
+    const phoneNumber = encodeURIComponent(phone.replace(/[^0-9]/g, ""));
     const phoneRedirectUrl = `tel:${phoneNumber}`;
     onSubmit({ phone: phoneRedirectUrl });
   };
@@ -20,7 +20,7 @@ const PhoneForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
           Phone
         </Label>
         <Input
-          type="text"
+          type="tel"
           id="phone"
           name="phone"
           placeholder="Enter phone number to be included in the QR code"
