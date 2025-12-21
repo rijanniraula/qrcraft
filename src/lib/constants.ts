@@ -11,6 +11,7 @@ import URLForm from "@/components/forms/URLForm";
 import EmailForm from "@/components/forms/EmailForm";
 import PhoneForm from "@/components/forms/PhoneForm";
 import SMSForm from "@/components/forms/SMSForm";
+import WhatsAppForm from "@/components/forms/WhatsappForm";
 
 export const QR_TYPES = [
   {
@@ -57,4 +58,5 @@ export const QR_TYPE_MAP = {
   email: EmailForm,
   phone: PhoneForm,
   sms: SMSForm,
+  whatsapp: WhatsAppForm,
 };
