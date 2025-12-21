@@ -9,6 +9,7 @@ import {
 import TextForm from "@/components/forms/TextForm";
 import URLForm from "@/components/forms/URLForm";
 import EmailForm from "@/components/forms/EmailForm";
+import PhoneForm from "@/components/forms/PhoneForm";
 
 export const QR_TYPES = [
   {
@@ -53,4 +54,5 @@ export const QR_TYPE_MAP = {
   text: TextForm,
   url: URLForm,
   email: EmailForm,
+  phone: PhoneForm,
 };
