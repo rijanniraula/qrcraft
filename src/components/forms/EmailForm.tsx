@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Button } from "../ui/button";
+import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
@@ -15,8 +14,7 @@ const EmailForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
     body: "",
   });
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const generateEmailRedirectUrl = () => {
     const {
       email: emailValue,
       subject: subjectValue,
@@ -32,8 +30,12 @@ const EmailForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
     onSubmit({ email: emailRedirectUrl });
   };
 
+  useEffect(() => {
+    generateEmailRedirectUrl();
+  }, [formData]);
+
   return (
-    <form onSubmit={handleFormSubmit} className="space-y-4">
+    <form className="space-y-4">
       <div className="space-y-1">
         <Label htmlFor="email" className="text-sm font-semibold">
           Email
@@ -77,18 +79,7 @@ const EmailForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
           required
           className="h-[100px]"
         />
-      </div>
-
-      <div className="flex items-center  gap-2">
-        <Button type="submit">Generate QR</Button>
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => setFormData({ email: "", subject: "", body: "" })}
-        >
-          Clear
-        </Button>
-      </div>
+      </div>{" "}
     </form>
   );
 };

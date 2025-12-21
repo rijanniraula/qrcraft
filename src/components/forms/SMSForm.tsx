@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Button } from "../ui/button";
+import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
@@ -13,8 +12,7 @@ const SMSForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
     message: "",
   });
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const generateSMSRedirectUrl = () => {
     const { phone: phoneValue, message: messageValue } = formData;
 
     const smsRedirectUrl = `sms:${encodeURIComponent(
@@ -24,8 +22,12 @@ const SMSForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
     onSubmit({ sms: smsRedirectUrl });
   };
 
+  useEffect(() => {
+    generateSMSRedirectUrl();
+  }, [formData]);
+
   return (
-    <form onSubmit={handleFormSubmit} className="space-y-4">
+    <form className="space-y-4">
       <div className="space-y-1">
         <Label htmlFor="phone" className="text-sm font-semibold">
           Phone
@@ -56,17 +58,6 @@ const SMSForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
           required
           className="h-[100px]"
         />
-      </div>
-
-      <div className="flex items-center  gap-2">
-        <Button type="submit">Generate QR</Button>
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => setFormData({ phone: "", message: "" })}
-        >
-          Clear
-        </Button>
       </div>
     </form>
   );

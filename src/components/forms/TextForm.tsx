@@ -1,18 +1,20 @@
-import { useState } from "react";
-import { Button } from "../ui/button";
+import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
 const TextForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
   const [text, setText] = useState<string>("");
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const generateTextRedirectUrl = () => {
     onSubmit({ text });
   };
 
+  useEffect(() => {
+    generateTextRedirectUrl();
+  }, [text]);
+
   return (
-    <form onSubmit={handleFormSubmit} className="space-y-4">
+    <form className="space-y-4">
       <div className="space-y-1">
         <Label htmlFor="text" className="text-sm font-semibold">
           Text
@@ -26,13 +28,6 @@ const TextForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
           value={text}
           required
         />
-      </div>
-
-      <div className="flex items-center  gap-2">
-        <Button type="submit">Generate QR</Button>
-        <Button type="button" variant="outline" onClick={() => setText("")}>
-          Clear
-        </Button>
       </div>
     </form>
   );

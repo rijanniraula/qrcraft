@@ -1,20 +1,22 @@
-import { useState } from "react";
-import { Button } from "../ui/button";
+import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
 const PhoneForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
   const [phone, setPhone] = useState<string>("");
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const generatePhoneRedirectUrl = () => {
     const phoneNumber = encodeURIComponent(phone.replace(/[^0-9]/g, ""));
     const phoneRedirectUrl = `tel:${phoneNumber}`;
     onSubmit({ phone: phoneRedirectUrl });
   };
 
+  useEffect(() => {
+    generatePhoneRedirectUrl();
+  }, [phone]);
+
   return (
-    <form onSubmit={handleFormSubmit} className="space-y-4">
+    <form className="space-y-4">
       <div className="space-y-1">
         <Label htmlFor="phone" className="text-sm font-semibold">
           Phone
@@ -28,13 +30,6 @@ const PhoneForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
           value={phone}
           required
         />
-      </div>
-
-      <div className="flex items-center  gap-2">
-        <Button type="submit">Generate QR</Button>
-        <Button type="button" variant="outline" onClick={() => setPhone("")}>
-          Clear
-        </Button>
       </div>
     </form>
   );
