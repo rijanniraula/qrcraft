@@ -4,6 +4,7 @@ import MainQRArea from "@/components/MainQRArea";
 import { useState } from "react";
 import { QR_TYPES } from "@/lib/constants";
 import HeaderNav from "@/components/HeaderNav";
+import QRCustomizeCard from "@/components/customizations/QRCustomizeCard";
 
 export const HomePage = () => {
   const [selectedQRType, setSelectedQRType] = useState<
@@ -32,6 +33,7 @@ export const HomePage = () => {
               selectedQRType={selectedQRType}
               onSubmit={handleFormSubmit}
             />
+            <QRCustomizeCard />
           </div>
           <div className="h-fit">
             <MainQRArea qrValue={qrValue} />
