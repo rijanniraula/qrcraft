@@ -1,51 +1,64 @@
-import { QRCodeCanvas, QRCodeSVG } from "qrcode.react";
+import { QRCodeSVG } from "qrcode.react";
 import { CardCustom } from "./common/CardCustom";
 import { CopyIcon, DownloadIcon, ScanQrCode } from "lucide-react";
 import { Button } from "./ui/button";
 import { useRef } from "react";
+import { toPng } from "html-to-image";
 
 const MainQRArea = ({ qrValue = "" }: { qrValue: string }) => {
   const qrCodeRef = useRef<HTMLDivElement>(null);
 
-  const downloadQR = () => {
-    console.log(qrCodeRef.current);
-    const canvas = qrCodeRef.current?.querySelector("canvas");
-    if (!canvas) {
-      console.log("no canvas");
-      return;
-    }
+  const downloadPNG = async () => {
+    if (!qrCodeRef.current) return;
 
-    const pngUrl = canvas.toDataURL("image/png");
-    const link = document.createElement("a");
-    link.href = pngUrl;
-    link.download = "qrcode.png";
-    link.click();
+    try {
+      const dataUrl = await toPng(qrCodeRef.current, {
+        pixelRatio: 3,
+      });
+
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = "qrcode.png";
+      link.click();
+    } catch (error) {
+      console.error("Failed to generate PNG:", error);
+    }
   };
 
   const downloadSVG = () => {
     const svg = qrCodeRef.current?.querySelector("svg");
-    if (!svg) {
-      console.log("no svg");
-      return;
-    }
+    if (!svg) return;
 
-    // Serialize the SVG XML
     const svgStr = new XMLSerializer().serializeToString(svg);
 
-    // Create a Blob
     const blob = new Blob([svgStr], { type: "image/svg+xml;charset=utf-8" });
 
-    // Generate a URL
     const url = URL.createObjectURL(blob);
 
-    // Trigger download
     const link = document.createElement("a");
     link.href = url;
     link.download = "qrcode.svg";
     link.click();
 
-    // Clean up
     URL.revokeObjectURL(url);
+  };
+
+  const copyToClipboard = async () => {
+    if (!qrCodeRef.current) return;
+    try {
+      const dataUrl = await toPng(qrCodeRef.current, { pixelRatio: 3 });
+
+      const res = await fetch(dataUrl);
+      const blob = await res.blob();
+
+      await navigator.clipboard.write([
+        new ClipboardItem({ "image/png": blob }),
+      ]);
+
+      console.log("QR copied to clipboard");
+    } catch (error) {
+      console.error("Failed to copy to clipboard:", error);
+    }
   };
 
   return (
@@ -57,26 +70,10 @@ const MainQRArea = ({ qrValue = "" }: { qrValue: string }) => {
       }
       className="w-full flex items-center justify-center shadow-xs border-none p-4"
     >
-      <QRCodeCanvas
-        value={qrValue}
-        size={256}
-        bgColor="#ffffff"
-        fgColor="#000000"
-        level="H"
-        includeMargin
-      />
-      <div ref={qrCodeRef} className="hidden">
-        <QRCodeCanvas
-          value={qrValue}
-          size={2048}
-          bgColor="#ffffff"
-          fgColor="#000000"
-          level="H"
-          includeMargin
-        />
+      <div ref={qrCodeRef} className="">
         <QRCodeSVG
           value={qrValue}
-          size={2048}
+          size={256}
           bgColor="#ffffff"
           fgColor="#000000"
           level="H"
@@ -87,7 +84,7 @@ const MainQRArea = ({ qrValue = "" }: { qrValue: string }) => {
         <Button
           variant="default"
           className="text-xs hover:bg-primary/80"
-          onClick={downloadQR}
+          onClick={downloadPNG}
         >
           <DownloadIcon className="size-4" /> PNG
         </Button>
@@ -101,6 +98,7 @@ const MainQRArea = ({ qrValue = "" }: { qrValue: string }) => {
         <Button
           variant="outline"
           className="text-xs hover:bg-primary/15  hover:text-primary"
+          onClick={copyToClipboard}
         >
           <CopyIcon className="size-4" /> Copy
         </Button>
