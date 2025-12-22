@@ -1,9 +1,9 @@
-import { CardCustom } from "@/components/common/CardCustom";
 import QRFormSection from "@/components/QRFormSection";
 import QRTypeSelector from "@/components/QRTypeSelector";
 import MainQRArea from "@/components/MainQRArea";
 import { useState } from "react";
 import { QR_TYPES } from "@/lib/constants";
+import HeaderNav from "@/components/HeaderNav";
 
 export const HomePage = () => {
   const [selectedQRType, setSelectedQRType] = useState<
@@ -18,23 +18,26 @@ export const HomePage = () => {
   };
 
   return (
-    <main className="max-w-7xl mx-auto px-4 py-8">
-      <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        {" "}
-        <div className="flex flex-col gap-8">
-          <QRTypeSelector
-            selectedQRType={selectedQRType}
-            setSelectedQRType={setSelectedQRType}
-          />
-          <QRFormSection
-            selectedQRType={selectedQRType}
-            onSubmit={handleFormSubmit}
-          />
+    <>
+      <HeaderNav />
+      <main className="max-w-7xl mx-auto px-4 py-8">
+        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {" "}
+          <div className="flex flex-col gap-8">
+            <QRTypeSelector
+              selectedQRType={selectedQRType}
+              setSelectedQRType={setSelectedQRType}
+            />
+            <QRFormSection
+              selectedQRType={selectedQRType}
+              onSubmit={handleFormSubmit}
+            />
+          </div>
+          <div className="h-fit">
+            <MainQRArea qrValue={qrValue} />
+          </div>{" "}
         </div>
-        <div className="h-fit">
-          <MainQRArea qrValue={qrValue} />
-        </div>{" "}
-      </div>
-    </main>
+      </main>
+    </>
   );
 };

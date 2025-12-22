@@ -1,6 +1,6 @@
 import { QRCodeSVG } from "qrcode.react";
 import { CardCustom } from "./common/CardCustom";
-import { CopyIcon, DownloadIcon, ScanEyeIcon } from "lucide-react";
+import { CopyIcon, DownloadIcon, ScanQrCode } from "lucide-react";
 import { Button } from "./ui/button";
 
 const MainQRArea = ({ qrValue = "" }: { qrValue: string }) => {
@@ -8,8 +8,7 @@ const MainQRArea = ({ qrValue = "" }: { qrValue: string }) => {
     <CardCustom
       title={
         <span className="text-sm text-muted-foreground flex items-center gap-1">
-          <ScanEyeIcon className="size-4" />
-          QR Preview
+          <ScanQrCode className="size-4" /> QR Preview
         </span>
       }
       className="w-full flex items-center justify-center shadow-xs border-none p-4"
