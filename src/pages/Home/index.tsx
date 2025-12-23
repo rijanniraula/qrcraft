@@ -2,7 +2,7 @@ import QRFormSection from "@/components/QRFormSection";
 import QRTypeSelector from "@/components/QRTypeSelector";
 import MainQRArea from "@/components/MainQRArea";
 import { useState } from "react";
-import { QR_TYPES } from "@/lib/constants";
+import { DEFAULT_QR_CUSTOMIZATIONS, QR_TYPES } from "@/lib/constants";
 import HeaderNav from "@/components/HeaderNav";
 import QRCustomizeCard from "@/components/customizations/QRCustomizeCard";
 
@@ -12,6 +12,10 @@ export const HomePage = () => {
   >(QR_TYPES[0]);
 
   const [qrValue, setQrValue] = useState<string>("");
+
+  const [qrCustomizations, setQrCustomizations] = useState<any>({
+    ...DEFAULT_QR_CUSTOMIZATIONS,
+  });
 
   const handleFormSubmit = (data: any) => {
     console.log(data);
@@ -33,10 +37,13 @@ export const HomePage = () => {
               selectedQRType={selectedQRType}
               onSubmit={handleFormSubmit}
             />
-            <QRCustomizeCard />
+            <QRCustomizeCard
+              qrCustomizations={qrCustomizations}
+              setQrCustomizations={setQrCustomizations}
+            />
           </div>
           <div className="h-fit">
-            <MainQRArea qrValue={qrValue} />
+            <MainQRArea qrValue={qrValue} qrCustomizations={qrCustomizations} />
           </div>{" "}
         </div>
       </main>

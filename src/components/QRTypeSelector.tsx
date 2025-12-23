@@ -2,6 +2,7 @@ import { QR_TYPES } from "@/lib/constants";
 import { CardCustom } from "./common/CardCustom";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import { QrCode } from "lucide-react";
 
 const QRTypeSelector = ({
   selectedQRType,
@@ -13,11 +14,14 @@ const QRTypeSelector = ({
   return (
     <CardCustom
       title={
-        <span className="text-sm text-muted-foreground">QR Type Selector</span>
+        <span className="text-sm font-semibold text-muted-foreground flex items-center gap-1">
+          <QrCode size={16} />
+          QR Type Selector
+        </span>
       }
       className="w-full shadow-xs border-none p-4"
     >
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
         {QR_TYPES.map((type) => (
           <Button
             key={type.id}

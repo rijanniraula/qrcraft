@@ -2,6 +2,7 @@ import { QR_TYPES } from "@/lib/constants";
 import { QR_TYPE_MAP } from "@/lib/constants";
 import { useMemo } from "react";
 import { CardCustom } from "./common/CardCustom";
+import { TextIcon } from "lucide-react";
 
 const QRFormSection = ({
   selectedQRType,
@@ -17,8 +18,8 @@ const QRFormSection = ({
   return (
     <CardCustom
       title={
-        <span className="text-sm text-muted-foreground flex items-center gap-1">
-          <selectedQRType.icon className="size-4" />
+        <span className="text-sm font-semibold text-muted-foreground flex items-center gap-1">
+          <TextIcon size={16} />
           Content
         </span>
       }
