@@ -8,6 +8,7 @@ import {
 } from "@/lib/constants";
 import ColorForm from "./ColorForm";
 import { PencilRuler } from "lucide-react";
+import LogoUploader from "./LogoUploader";
 
 const QRCustomizeCard = ({
   qrCustomizations,
@@ -65,14 +66,36 @@ const QRCustomizeCard = ({
       </div>
       {selectedCustomization && (
         <div className="mt-4">
-          {selectedCustomization.value === "color" && (
-            <ColorForm
-              colors={qrCustomizations.color}
-              setColors={(colors: any) =>
-                setQrCustomizations({ ...qrCustomizations, color: colors })
-              }
-            />
-          )}
+          {(() => {
+            switch (selectedCustomization.value) {
+              case "color":
+                return (
+                  <ColorForm
+                    colors={qrCustomizations.color}
+                    setColors={(colors: any) =>
+                      setQrCustomizations({
+                        ...qrCustomizations,
+                        color: colors,
+                      })
+                    }
+                  />
+                );
+              case "logo":
+                return (
+                  <LogoUploader
+                    logoUrl={qrCustomizations.logo}
+                    setLogoUrl={(logoUrl: string | null) =>
+                      setQrCustomizations({
+                        ...qrCustomizations,
+                        logo: logoUrl,
+                      })
+                    }
+                  />
+                );
+              default:
+                return null;
+            }
+          })()}
         </div>
       )}
     </CardCustom>
