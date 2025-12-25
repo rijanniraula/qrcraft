@@ -76,8 +76,17 @@ const MainQRArea = ({
       }
       className="w-full flex items-center justify-center shadow-xs border-none p-4 "
     >
-      <div className="space-y-4">
-        <div ref={qrCodeRef} className="">
+      <div className="space-y-4 w-full flex flex-col items-center justify-center gap-8">
+        <div
+          ref={qrCodeRef}
+          className="flex flex-col items-center justify-center"
+        >
+          {qrCustomizations?.label?.topText && (
+            <h1 className="text-muted-foreground bg-white px-2 py-1 text-center">
+              {qrCustomizations?.label?.topText}
+            </h1>
+          )}
+
           <QRCodeSVG
             value={qrValue}
             size={256}
@@ -86,6 +95,11 @@ const MainQRArea = ({
             level="H"
             includeMargin
           />
+          {qrCustomizations?.label?.bottomText && (
+            <h1 className="text-muted-foreground w-full text-center">
+              {qrCustomizations?.label?.bottomText}
+            </h1>
+          )}
         </div>
         <div className="flex gap-2 ">
           <Button

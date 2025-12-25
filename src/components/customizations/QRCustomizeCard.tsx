@@ -9,6 +9,7 @@ import {
 import ColorForm from "./ColorForm";
 import { PencilRuler } from "lucide-react";
 import LogoUploader from "./LogoUploader";
+import LabelForm from "./LabelForm";
 
 const QRCustomizeCard = ({
   qrCustomizations,
@@ -92,6 +93,32 @@ const QRCustomizeCard = ({
                     }
                   />
                 );
+              case "label":
+                return (
+                  <LabelForm
+                    topText={qrCustomizations.label.topText}
+                    bottomText={qrCustomizations.label.bottomText}
+                    setTopText={(topText: string) =>
+                      setQrCustomizations({
+                        ...qrCustomizations,
+                        label: {
+                          ...qrCustomizations.label,
+                          topText: topText ?? null,
+                        },
+                      })
+                    }
+                    setBottomText={(bottomText: string) =>
+                      setQrCustomizations({
+                        ...qrCustomizations,
+                        label: {
+                          ...qrCustomizations.label,
+                          bottomText: bottomText ?? null,
+                        },
+                      })
+                    }
+                  />
+                );
+
               default:
                 return null;
             }
