@@ -15,7 +15,6 @@ import EmailForm from "@/components/forms/EmailForm";
 import PhoneForm from "@/components/forms/PhoneForm";
 import SMSForm from "@/components/forms/SMSForm";
 import WhatsAppForm from "@/components/forms/WhatsappForm";
-import ColorForm from "@/components/customizations/ColorForm";
 
 export const CUSTOMIZATION_ITEMS = [
   { label: "Color", value: "color", icon: Palette },
@@ -87,11 +86,4 @@ export const QR_TYPE_MAP = {
   phone: PhoneForm,
   sms: SMSForm,
   whatsapp: WhatsAppForm,
-};
-
-export const QR_CUSTOMIZATION_FORM_MAP = {
-  color: ColorForm,
-  // logo: LogoForm,
-  // label: LabelForm,
-  // style: StyleForm,
 };
