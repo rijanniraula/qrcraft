@@ -67,6 +67,8 @@ const MainQRArea = ({
     }
   };
 
+  console.log({ qrCustomizations });
+
   return (
     <CardCustom
       title={
@@ -79,10 +81,14 @@ const MainQRArea = ({
       <div className="space-y-4 w-full flex flex-col items-center justify-center gap-8">
         <div
           ref={qrCodeRef}
-          className="flex flex-col items-center justify-center"
+          className={`flex flex-col items-center justify-center border border-red-500 `}
+          style={{ backgroundColor: qrCustomizations.color.bgColor }}
         >
           {qrCustomizations?.label?.topText && (
-            <h1 className="text-muted-foreground bg-white px-2 py-1 text-center">
+            <h1
+              className="text-muted-foreground px-2 py-1 text-center"
+              style={{ color: qrCustomizations.label.topTextColor }}
+            >
               {qrCustomizations?.label?.topText}
             </h1>
           )}
@@ -96,7 +102,10 @@ const MainQRArea = ({
             includeMargin
           />
           {qrCustomizations?.label?.bottomText && (
-            <h1 className="text-muted-foreground w-full text-center">
+            <h1
+              className="text-muted-foreground w-full text-center"
+              style={{ color: qrCustomizations.label.bottomTextColor }}
+            >
               {qrCustomizations?.label?.bottomText}
             </h1>
           )}
