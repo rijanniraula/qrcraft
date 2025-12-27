@@ -10,6 +10,7 @@ import ColorForm from "./ColorForm";
 import { PencilRuler } from "lucide-react";
 import LogoUploader from "./LogoUploader";
 import LabelForm from "./LabelForm";
+import StylesForm from "./StylesForm";
 
 const QRCustomizeCard = ({
   qrCustomizations,
@@ -134,6 +135,19 @@ const QRCustomizeCard = ({
                           ...qrCustomizations.label,
                           bottomTextColor: bottomTextColor ?? null,
                         },
+                      })
+                    }
+                  />
+                );
+
+              case "style":
+                return (
+                  <StylesForm
+                    styles={qrCustomizations.style}
+                    setStyles={(styles: any) =>
+                      setQrCustomizations({
+                        ...qrCustomizations,
+                        style: styles,
                       })
                     }
                   />

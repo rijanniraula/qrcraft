@@ -78,11 +78,20 @@ const MainQRArea = ({
       }
       className="w-full flex items-center justify-center shadow-xs border-none p-4 "
     >
-      <div className="space-y-4 w-full flex flex-col items-center justify-center gap-8">
+      <div
+        className="space-y-4 w-full flex flex-col items-center justify-center gap-8 overflow-visible"
+        style={{
+          borderRadius: qrCustomizations.style.borderRadius,
+        }}
+      >
         <div
           ref={qrCodeRef}
           className={`flex flex-col items-center justify-center border border-red-500 `}
-          style={{ backgroundColor: qrCustomizations.color.bgColor }}
+          style={{
+            backgroundColor: qrCustomizations.color.bgColor,
+            borderRadius: qrCustomizations.style.borderRadius,
+            padding: qrCustomizations.style.padding,
+          }}
         >
           {qrCustomizations?.label?.topText && (
             <h1
@@ -100,6 +109,9 @@ const MainQRArea = ({
             fgColor={qrCustomizations.color.fgColor}
             level="H"
             includeMargin
+            style={{
+              borderRadius: qrCustomizations.style.borderRadius,
+            }}
           />
           {qrCustomizations?.label?.bottomText && (
             <h1

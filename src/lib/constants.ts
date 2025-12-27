@@ -39,6 +39,7 @@ export const DEFAULT_QR_CUSTOMIZATIONS = {
   style: {
     borderRadius: 0,
     frameColor: "#000000",
+    padding: 0,
   },
 };
 
