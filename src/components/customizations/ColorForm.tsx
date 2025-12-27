@@ -11,7 +11,7 @@ const ColorForm = ({
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="bgColor" className="text-sm font-medium">
+        <Label htmlFor="bgColor" className="text-sm font-semibold">
           Background Color
         </Label>
         <div className="flex items-center gap-2">
@@ -41,7 +41,7 @@ const ColorForm = ({
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="fgColor" className="text-sm font-medium">
+        <Label htmlFor="fgColor" className="text-sm font-semibold">
           Foreground Color
         </Label>
         <div className="flex items-center gap-2">
