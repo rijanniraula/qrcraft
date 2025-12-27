@@ -32,7 +32,9 @@ export const DEFAULT_QR_CUSTOMIZATIONS = {
   logo: null,
   label: {
     topText: null,
+    topTextColor: "#000000",
     bottomText: null,
+    bottomTextColor: "#000000",
   },
   style: {
     borderRadius: 0,

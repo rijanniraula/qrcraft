@@ -98,6 +98,8 @@ const QRCustomizeCard = ({
                   <LabelForm
                     topText={qrCustomizations.label.topText}
                     bottomText={qrCustomizations.label.bottomText}
+                    topTextColor={qrCustomizations.label.topTextColor}
+                    bottomTextColor={qrCustomizations.label.bottomTextColor}
                     setTopText={(topText: string) =>
                       setQrCustomizations({
                         ...qrCustomizations,
@@ -113,6 +115,24 @@ const QRCustomizeCard = ({
                         label: {
                           ...qrCustomizations.label,
                           bottomText: bottomText ?? null,
+                        },
+                      })
+                    }
+                    setTopTextColor={(topTextColor: string) =>
+                      setQrCustomizations({
+                        ...qrCustomizations,
+                        label: {
+                          ...qrCustomizations.label,
+                          topTextColor: topTextColor ?? null,
+                        },
+                      })
+                    }
+                    setBottomTextColor={(bottomTextColor: string) =>
+                      setQrCustomizations({
+                        ...qrCustomizations,
+                        label: {
+                          ...qrCustomizations.label,
+                          bottomTextColor: bottomTextColor ?? null,
                         },
                       })
                     }
