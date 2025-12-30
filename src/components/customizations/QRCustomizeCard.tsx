@@ -21,7 +21,7 @@ const QRCustomizeCard = ({
 }) => {
   const [selectedCustomization, setSelectedCustomization] = useState<
     (typeof CUSTOMIZATION_ITEMS)[number] | null
-  >(null);
+  >(CUSTOMIZATION_ITEMS[0]);
 
   return (
     <CardCustom
