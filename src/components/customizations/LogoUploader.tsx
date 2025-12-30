@@ -8,7 +8,7 @@ const LogoUploader = ({
   setLogoUrl: (logoUrl: string | null) => void;
 }) => {
   return (
-    <div className="border-2 border-dashed border-border rounded-xl p-6 text-center hover:border-primary/50 transition-colors">
+    <div className="border-2 border-dashed border-border rounded-xl p-8 mt-6 text-center hover:border-primary/50 transition-colors">
       <input
         type="file"
         onChange={(e) => setLogoUrl(e.target.files?.[0]?.name ?? null)}

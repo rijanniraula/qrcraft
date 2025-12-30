@@ -37,6 +37,8 @@ export const DEFAULT_QR_CUSTOMIZATIONS = {
     bottomTextColor: "#000000",
   },
   style: {
+    borderColor: "#000000",
+    borderWidth: 0,
     borderRadius: 0,
     frameColor: "#000000",
     padding: 0,

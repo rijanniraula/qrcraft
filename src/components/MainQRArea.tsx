@@ -79,23 +79,25 @@ const MainQRArea = ({
       className="w-full flex items-center justify-center shadow-xs border-none p-4 "
     >
       <div
-        className="space-y-4 w-full flex flex-col items-center justify-center gap-8 overflow-visible"
+        className="space-y-4 w-full flex flex-col items-center justify-center gap-8 overflow-visible "
         style={{
           borderRadius: qrCustomizations.style.borderRadius,
         }}
       >
         <div
           ref={qrCodeRef}
-          className={`flex flex-col items-center justify-center border border-red-500 `}
+          className={`flex flex-col items-center justify-center border `}
           style={{
             backgroundColor: qrCustomizations.color.bgColor,
             borderRadius: qrCustomizations.style.borderRadius,
-            padding: qrCustomizations.style.padding,
+            padding: Math.max(qrCustomizations.style.padding, 32),
+            borderColor: qrCustomizations.style.borderColor,
+            borderWidth: qrCustomizations.style.borderWidth,
           }}
         >
           {qrCustomizations?.label?.topText && (
             <h1
-              className="text-muted-foreground px-2 py-1 text-center"
+              className="text-center wrap-break-word w-[256px] p-4 whitespace-pre-line"
               style={{ color: qrCustomizations.label.topTextColor }}
             >
               {qrCustomizations?.label?.topText}
@@ -108,14 +110,11 @@ const MainQRArea = ({
             bgColor={qrCustomizations.color.bgColor}
             fgColor={qrCustomizations.color.fgColor}
             level="H"
-            includeMargin
-            style={{
-              borderRadius: qrCustomizations.style.borderRadius,
-            }}
+            marginSize={0}
           />
           {qrCustomizations?.label?.bottomText && (
             <h1
-              className="text-muted-foreground w-full text-center"
+              className="text-center wrap-break-word w-[256px] p-4 whitespace-pre-line"
               style={{ color: qrCustomizations.label.bottomTextColor }}
             >
               {qrCustomizations?.label?.bottomText}
