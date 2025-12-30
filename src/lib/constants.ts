@@ -9,6 +9,7 @@ import {
   ImageIcon,
   Square,
   WifiIcon,
+  Share2,
 } from "lucide-react";
 import TextForm from "@/components/forms/TextForm";
 import URLForm from "@/components/forms/URLForm";
@@ -17,6 +18,7 @@ import PhoneForm from "@/components/forms/PhoneForm";
 import SMSForm from "@/components/forms/SMSForm";
 import WhatsAppForm from "@/components/forms/WhatsappForm";
 import WifiForm from "@/components/customizations/WifiForm";
+import SocialsForm from "@/components/customizations/SocialsForm";
 
 export const CUSTOMIZATION_ITEMS = [
   { label: "Color", value: "color", icon: Palette },
@@ -29,6 +31,14 @@ export const WIFI_ENCRYPTION_OPTIONS = [
   { label: "WPA/WPA2", value: "WPA" },
   { label: "WEP", value: "WEP" },
   { label: "No Password", value: "nopass" },
+];
+
+export const SOCIAL_PLATFORMS = [
+  { label: "Twitter", value: "twitter" },
+  { label: "Facebook", value: "facebook" },
+  { label: "Instagram", value: "instagram" },
+  { label: "LinkedIn", value: "linkedin" },
+  { label: "YouTube", value: "youtube" },
 ];
 
 export const DEFAULT_QR_CUSTOMIZATIONS = {
@@ -96,6 +106,12 @@ export const QR_TYPES = [
     value: "wifi",
     icon: WifiIcon,
   },
+  {
+    id: 8,
+    name: "Socials",
+    value: "socials",
+    icon: Share2,
+  },
 ];
 
 export const QR_TYPE_MAP = {
@@ -106,4 +122,5 @@ export const QR_TYPE_MAP = {
   sms: SMSForm,
   whatsapp: WhatsAppForm,
   wifi: WifiForm,
+  socials: SocialsForm,
 };

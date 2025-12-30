@@ -11,6 +11,7 @@ import { PencilRuler } from "lucide-react";
 import LogoUploader from "./LogoUploader";
 import LabelForm from "./LabelForm";
 import StylesForm from "./StylesForm";
+import SocialsForm from "./SocialsForm";
 
 const QRCustomizeCard = ({
   qrCustomizations,
@@ -148,6 +149,17 @@ const QRCustomizeCard = ({
                       setQrCustomizations({
                         ...qrCustomizations,
                         style: styles,
+                      })
+                    }
+                  />
+                );
+              case "socials":
+                return (
+                  <SocialsForm
+                    onSubmit={(data: any) =>
+                      setQrCustomizations({
+                        ...qrCustomizations,
+                        socials: data.socials,
                       })
                     }
                   />
