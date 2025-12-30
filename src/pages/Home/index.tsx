@@ -18,7 +18,6 @@ export const HomePage = () => {
   });
 
   const handleFormSubmit = (data: any) => {
-    console.log(data);
     setQrValue(data[selectedQRType.value]);
   };
 

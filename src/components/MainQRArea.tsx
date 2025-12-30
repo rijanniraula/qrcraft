@@ -4,6 +4,7 @@ import { CopyIcon, DownloadIcon, ScanQrCode } from "lucide-react";
 import { Button } from "./ui/button";
 import { useRef } from "react";
 import { toPng } from "html-to-image";
+import { toast } from "react-toastify";
 
 const MainQRArea = ({
   qrValue = "",
@@ -61,13 +62,11 @@ const MainQRArea = ({
         new ClipboardItem({ "image/png": blob }),
       ]);
 
-      console.log("QR copied to clipboard");
+      toast("QR copied to clipboard");
     } catch (error) {
-      console.error("Failed to copy to clipboard:", error);
+      toast.error("Failed to copy to clipboard");
     }
   };
-
-  console.log({ qrCustomizations });
 
   return (
     <CardCustom
