@@ -62,7 +62,7 @@ const StylesForm = ({
           id="borderWidth"
           name="borderWidth"
           min={0}
-          max={50}
+          max={30}
           value={styles.borderWidth}
           onChange={(e) =>
             setStyles({ ...styles, borderWidth: parseInt(e.target.value) })

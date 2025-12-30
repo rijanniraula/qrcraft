@@ -79,47 +79,64 @@ const MainQRArea = ({
       className="w-full flex items-center justify-center shadow-xs border-none p-4 "
     >
       <div
-        className="space-y-4 w-full flex flex-col items-center justify-center gap-8 overflow-visible "
-        style={{
-          borderRadius: qrCustomizations.style.borderRadius,
-        }}
+        className={`space-y-4 w-full flex flex-col items-center justify-center gap-8 overflow-visible `}
       >
         <div
-          ref={qrCodeRef}
-          className={`flex flex-col items-center justify-center border `}
+          className={`${
+            qrCustomizations.style.borderWidth > 0
+              ? "border-none"
+              : "border border-dashed"
+          }`}
           style={{
-            backgroundColor: qrCustomizations.color.bgColor,
             borderRadius: qrCustomizations.style.borderRadius,
-            padding: Math.max(qrCustomizations.style.padding, 32),
-            borderColor: qrCustomizations.style.borderColor,
-            borderWidth: qrCustomizations.style.borderWidth,
           }}
         >
-          {qrCustomizations?.label?.topText && (
-            <h1
-              className="text-center wrap-break-word w-[256px] p-4 whitespace-pre-line"
-              style={{ color: qrCustomizations.label.topTextColor }}
-            >
-              {qrCustomizations?.label?.topText}
-            </h1>
-          )}
+          <div
+            ref={qrCodeRef}
+            className={`relative flex flex-col items-center justify-center border `}
+            style={{
+              backgroundColor: qrCustomizations.color.bgColor,
+              borderRadius: qrCustomizations.style.borderRadius,
+              padding: Math.max(qrCustomizations.style.padding, 32),
+              borderColor: qrCustomizations.style.borderColor,
+              borderWidth: Math.max(qrCustomizations.style.borderWidth),
+            }}
+          >
+            {qrCustomizations?.label?.topText && (
+              <h1
+                className="text-center wrap-break-word w-[256px] pb-8 whitespace-pre-line text-xl font-semibold"
+                style={{ color: qrCustomizations.label.topTextColor }}
+              >
+                {qrCustomizations?.label?.topText}
+              </h1>
+            )}
 
-          <QRCodeSVG
-            value={qrValue}
-            size={256}
-            bgColor={qrCustomizations.color.bgColor}
-            fgColor={qrCustomizations.color.fgColor}
-            level="H"
-            marginSize={0}
-          />
-          {qrCustomizations?.label?.bottomText && (
-            <h1
-              className="text-center wrap-break-word w-[256px] p-4 whitespace-pre-line"
-              style={{ color: qrCustomizations.label.bottomTextColor }}
-            >
-              {qrCustomizations?.label?.bottomText}
-            </h1>
-          )}
+            {qrCustomizations?.logo && (
+              <div className="absolute w-25 h-25 bg-white p-3 rounded-2xl">
+                <img
+                  src={qrCustomizations.logo}
+                  alt="logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            )}
+            <QRCodeSVG
+              value={qrValue}
+              size={256}
+              bgColor={qrCustomizations.color.bgColor}
+              fgColor={qrCustomizations.color.fgColor}
+              level="H"
+              marginSize={0}
+            />
+            {qrCustomizations?.label?.bottomText && (
+              <h1
+                className="text-center wrap-break-word w-[256px] pt-8 whitespace-pre-line text-lg font-normal"
+                style={{ color: qrCustomizations.label.bottomTextColor }}
+              >
+                {qrCustomizations?.label?.bottomText}
+              </h1>
+            )}
+          </div>
         </div>
         <div className="flex gap-2 ">
           <Button
