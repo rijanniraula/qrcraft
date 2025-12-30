@@ -21,7 +21,7 @@ const QRTypeSelector = ({
       }
       className="w-full shadow-xs border-none p-4"
     >
-      <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
         {QR_TYPES.map((type) => (
           <Button
             key={type.id}
